@@ -1,71 +1,59 @@
-/**
- * Ejemplo mi primer proyecto con Jison utilizando Nodejs en Ubuntu
- */
-
-/* Definición Léxica */
+/********************************************* PARTE LÉXICA *********************************************/
+/*********Área de definiciones*********/
 %lex
 
 %options case-insensitive
 
 %%
 
-"Evaluar"           return 'REVALUAR';
-";"                 return 'PTCOMA';
-"("                 return 'PARIZQ';
-")"                 return 'PARDER';
-"["                 return 'CORIZQ';
-"]"                 return 'CORDER';
+/***Caracteres del lenguaje***/
+"+"                         return 'MAS';
+"-"                         return 'MENOS';
+"*"                         return 'MULT';
+"/"                         return 'DIV';
 
-"+"                 return 'MAS';
-"-"                 return 'MENOS';
-"*"                 return 'POR';
-"/"                 return 'DIVIDIDO';
+"("                         return 'PARABRE';
+")"                         return 'PARCIERRA';
+
+/***Otras ER***/ 
+[a-zA-ZñÑ]*[0-9]*      	    return 'ID';
 
 /* Espacios en blanco */
-[ \r\t]+            {}
-\n                  {}
-
-[0-9]+("."[0-9]+)?\b    return 'DECIMAL';
-[0-9]+\b                return 'ENTERO';
+[ \r\t]+                    {/*Ignorar espacios en blanco*/}
+\n                          {/*Ignorar espacios en blanco*/}
 
 <<EOF>>                 return 'EOF';
 
-.                       { console.error('Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column); }
+.                       { console.error('Error en análisis léxico'); }
 /lex
 
-/* Asociación de operadores y precedencia */
+/*********Asociación de operadores y precedencias*********/
 
 %left 'MAS' 'MENOS'
-%left 'POR' 'DIVIDIDO'
-%left UMENOS
+%left 'MULT' 'DIV'
 
-%start ini
+%start INIT
 
-%% /* Definición de la gramática */
+%%
+/*********Área de producciones*********/
 
-ini
-	: instrucciones EOF
+INIT
+	: ExprE EOF { console.log('Expresión final: ');}
 ;
 
-instrucciones
-	: instruccion instrucciones
-	| instruccion
-	| error { console.error('Este es un error sintáctico: ' + yytext + ', en la linea: ' + this._$.first_line + ', en la columna: ' + this._$.first_column); }
+ExprE
+	: ExprE MAS ExprT
+	| ExprE MENOS ExprT
+	| ExprT
 ;
 
-instruccion
-	: REVALUAR CORIZQ expresion CORDER PTCOMA {
-		console.log('El valor de la expresión es: ' + $3);
-	}
+ExprT
+	: ExprT MULT ExprF
+    | ExprT DIV ExprF
+    | ExprF
 ;
 
-expresion
-	: MENOS expresion %prec UMENOS  { $$ = $2 *-1; }
-	| expresion MAS expresion       { $$ = $1 + $3; }
-	| expresion MENOS expresion     { $$ = $1 - $3; }
-	| expresion POR expresion       { $$ = $1 * $3; }
-	| expresion DIVIDIDO expresion  { $$ = $1 / $3; }
-	| ENTERO                        { $$ = Number($1); }
-	| DECIMAL                       { $$ = Number($1); }
-	| PARIZQ expresion PARDER       { $$ = $2; }
+ExprF
+	: PARABRE expresion PARCIERRA   { $$ = $2; }
+    | ID                            { $$ = $1; }
 ;
