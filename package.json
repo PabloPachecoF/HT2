@@ -1,0 +1,24 @@
+{
+  "name": "HT2",
+  "version": "1.0.0",
+  "description": "Hoja de trabajo 2 - Compiladores 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node parser.js",
+    "dev": "nodemon parser.js",
+    "compi": "compilar.sh",
+    "compitr": "compilar2.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloPachecoF/HT2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PabloPachecoF/HT2/issues"
+  },
+  "homepage": "https://github.com/PabloPachecoF/HT2#readme"
+}
