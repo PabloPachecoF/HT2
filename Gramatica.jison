@@ -65,11 +65,11 @@ ExprE
 	: ExprE MAS ExprT               { Newtemp();
                                       console.log(temp + " = " + $1 + "+" + $3);
                                       $$ = temp;
-                                      /*$$ = $1 + $3;*/ }
+                                    }
 	| ExprE MENOS ExprT             { Newtemp();
                                       console.log(temp + " = " + $1 + "-" + $3);
                                       $$ = temp;
-                                      /*$$ = $1 - $3;*/ }
+                                    }
 	| ExprT                         { $$ = $1; }
 ;
 
@@ -77,11 +77,11 @@ ExprT
 	: ExprT MULT ExprF              { Newtemp();
                                       console.log(temp + " = " + $1 + "*" + $3);
                                       $$ = temp;
-                                      /*$$ = $1 * $3;*/ }
+                                    }
     | ExprT DIV ExprF               { Newtemp();
                                       console.log(temp + " = " + $1 + "/" + $3);
                                       $$ = temp;
-                                      /*$$ = $1 / $3;*/ }
+                                    }
     | ExprF                         { $$ = $1; }
 ;
 
