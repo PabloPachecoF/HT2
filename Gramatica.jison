@@ -16,7 +16,7 @@
 ")"                         return 'PARCIERRA';
 
 /***Otras ER***/ 
-[a-zA-ZñÑ]*[0-9]*      	    return 'ID';
+[a-zA-ZñÑ]*[0-9]*\b    	    return 'ID';
 
 /* Espacios en blanco */
 [ \r\t]+                    {/*Ignorar espacios en blanco*/}
@@ -26,6 +26,26 @@
 
 .                       { console.error('Error en análisis léxico'); }
 /lex
+
+/********************************************* PARTE SINTÁCTICA *********************************************/
+/*********Área declaraciones*********/
+%{
+    //Variable contadora
+    var cont = 0;
+
+    //Variable temporal
+    var temp = "t" + cont;
+
+    //Variable cadena
+    var cad = temp;
+
+    //Función para crear nuevos temporales
+    function Newtemp()
+    {
+        temp = "t" + cont;
+        cont++;
+    }
+%}
 
 /*********Asociación de operadores y precedencias*********/
 
@@ -38,22 +58,34 @@
 /*********Área de producciones*********/
 
 INIT
-	: ExprE EOF { console.log('Expresión final: ');}
+	: ExprE EOF { /*console.log('Expresión final: \n' + $1);*/}
 ;
 
 ExprE
-	: ExprE MAS ExprT
-	| ExprE MENOS ExprT
-	| ExprT
+	: ExprE MAS ExprT               { Newtemp();
+                                      console.log(temp + " = " + $1 + "+" + $3);
+                                      $$ = temp;
+                                      /*$$ = $1 + $3;*/ }
+	| ExprE MENOS ExprT             { Newtemp();
+                                      console.log(temp + " = " + $1 + "-" + $3);
+                                      $$ = temp;
+                                      /*$$ = $1 - $3;*/ }
+	| ExprT                         { $$ = $1; }
 ;
 
 ExprT
-	: ExprT MULT ExprF
-    | ExprT DIV ExprF
-    | ExprF
+	: ExprT MULT ExprF              { Newtemp();
+                                      console.log(temp + " = " + $1 + "*" + $3);
+                                      $$ = temp;
+                                      /*$$ = $1 * $3;*/ }
+    | ExprT DIV ExprF               { Newtemp();
+                                      console.log(temp + " = " + $1 + "/" + $3);
+                                      $$ = temp;
+                                      /*$$ = $1 / $3;*/ }
+    | ExprF                         { $$ = $1; }
 ;
 
 ExprF
-	: PARABRE expresion PARCIERRA   { $$ = $2; }
+	: PARABRE ExprE PARCIERRA       { $$ = $2; }
     | ID                            { $$ = $1; }
 ;
