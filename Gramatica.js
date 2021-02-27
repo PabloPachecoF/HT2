@@ -90,13 +90,13 @@ case 2:
  Newtemp();
                                       console.log(temp + " = " + $$[$0-2] + "+" + $$[$0]);
                                       this.$ = temp;
-                                      /*this.$ = $$[$0-2] + $$[$0];*/ 
+                                    
 break;
 case 3:
  Newtemp();
                                       console.log(temp + " = " + $$[$0-2] + "-" + $$[$0]);
                                       this.$ = temp;
-                                      /*this.$ = $$[$0-2] - $$[$0];*/ 
+                                    
 break;
 case 4: case 7: case 9:
  this.$ = $$[$0]; 
@@ -105,13 +105,13 @@ case 5:
  Newtemp();
                                       console.log(temp + " = " + $$[$0-2] + "*" + $$[$0]);
                                       this.$ = temp;
-                                      /*this.$ = $$[$0-2] * $$[$0];*/ 
+                                    
 break;
 case 6:
  Newtemp();
                                       console.log(temp + " = " + $$[$0-2] + "/" + $$[$0]);
                                       this.$ = temp;
-                                      /*this.$ = $$[$0-2] / $$[$0];*/ 
+                                    
 break;
 case 8:
  this.$ = $$[$0-1]; 

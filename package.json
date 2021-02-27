@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node parser.js",
-    "dev": "nodemon parser.js",
     "compi": "compilar.sh",
-    "compitr": "compilar2.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
