@@ -1,7 +1,6 @@
 # HT2
 ## Examen corto 2 - Compiladores 2
 
-### Descripción
 En el presente programa se realizó un esquema de traducción dirigido por la sintaxis postfijo para un analizador que recibe como entrada una expresión aritmética (\*, +, -, /, paréntesis, letras y números). Para posteriormente generar el código de tres direcciones equivalente.
 
 ### Herramientas utilizadas
@@ -9,6 +8,20 @@ En el presente programa se realizó un esquema de traducción dirigido por la si
 - Herramienta generadora de analizadores léxicos y sintácticos Jison.
 - Sistema operativo Windows 10
 - NodeJS como entorno de ejecución de Javascript.
+
+### Descripción del proyecto
+Primeramente se creó el proyecto utilizando los comandos que brinda NodeJS, en el archivo **package.JSON** generado se colocaron los scripts que se utilizarán más adelante para trabajar la compilación de la gramática y la ejecución del programa final.
+![CapturaF4](https://user-images.githubusercontent.com/39973655/109370216-01133c80-7865-11eb-9ab5-e184f52054d4.PNG)
+
+En el archivo **Gramatica.jison** se tiene el analizador utilizado. Primero se definió la parte del análisis léxico con las expresiones regulares necesarias y los caracteres válidos del lenguaje.
+![CapturaF1](https://user-images.githubusercontent.com/39973655/109369555-5c8ffb00-7862-11eb-97a3-46f135fa5d99.PNG)
+
+Luego en el área de declaraciones se colocaron las variables que llevan el conteo de temporales, el temporal en sí y la cadena temporal final. También se colocó la función que generará los temporales para cada producción. Más abajo se colocó la asociación de operadores y precedencias del lenguaje.
+![CapturaF2](https://user-images.githubusercontent.com/39973655/109369767-577f7b80-7863-11eb-8118-fe567bebbf35.PNG)
+
+Finalmente se definió la parte del análisis sintáctico junto con el esquema de traducción para la generación del código de tres direcciones.
+![CapturaF3](https://user-images.githubusercontent.com/39973655/109369792-7120c300-7863-11eb-8361-cc7eb087f4bd.PNG)
+
 
 ### Entradas de prueba para el proyecto
 
