@@ -2,7 +2,7 @@
 ## Examen corto 2 - Compiladores 2
 
 ### Descripción
-*En el presente programa se realizó un esquema de traducción dirigido por la sintaxis postfijo para un analizador que recibe como entrada una expresión aritmética (\*, +, -, /, paréntesis, letras y números). Para posteriormente generar el código de tres direcciones equivalente.
+En el presente programa se realizó un esquema de traducción dirigido por la sintaxis postfijo para un analizador que recibe como entrada una expresión aritmética (\*, +, -, /, paréntesis, letras y números). Para posteriormente generar el código de tres direcciones equivalente.
 
 ### Herramientas utilizadas
 - Editor Visual Studio Code.
