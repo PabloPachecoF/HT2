@@ -22,8 +22,11 @@ Luego en el área de declaraciones se colocaron las variables que llevan el cont
 Finalmente se definió la parte del análisis sintáctico junto con el esquema de traducción para la generación del código de tres direcciones.
 ![CapturaF3](https://user-images.githubusercontent.com/39973655/109369792-7120c300-7863-11eb-8361-cc7eb087f4bd.PNG)
 
+El archivo **compilar.sh** contiene los scripts que se ejecutarán en la terminal de Visual Studio Code y que permiten a la herramienta Jison generar el analizador que se definió previamente en el archivo **Gramatica.jison**
+![CapturaF5](https://user-images.githubusercontent.com/39973655/109370641-c27e8180-7866-11eb-8a6a-2c2c63e7e57c.PNG)
 
-### Entradas de prueba para el proyecto
+
+### Entradas de prueba para el proyecto y sus respectivas salidas
 
 ##### (a + b) * (a + c)
 ![Captura](https://user-images.githubusercontent.com/39973655/109368757-c8249900-785f-11eb-8898-cdcf7ba63354.PNG)
